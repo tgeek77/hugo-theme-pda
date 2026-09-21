@@ -1,0 +1,25 @@
+{{ $dest := .Destination }}
+{{ $alt := .PlainText }}
+{{ $u := urls.Parse $dest }}
+{{ if $u.IsAbs }}
+  <figure class="figure">
+    <img src="{{ $dest | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    {{ with .Title }}<figcaption>{{ . | safeHTML }}</figcaption>{{ end }}
+  </figure>
+{{ else }}
+  {{ $img := or (.PageInner.Resources.GetMatch $dest) (.Page.Resources.GetMatch $dest) (resources.Get $dest) }}
+  {{ if $img }}
+    <figure class="figure">
+      {{ if eq $img.MediaType.SubType "svg" }}
+        <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+      {{ else }}
+        {{ with $img.Process "webp q82" }}
+          <img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+        {{ end }}
+      {{ end }}
+      {{ with $.Title }}<figcaption>{{ . | safeHTML }}</figcaption>{{ end }}
+    </figure>
+  {{ else }}
+    <img src="{{ $dest | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{ end }}
+{{ end }}

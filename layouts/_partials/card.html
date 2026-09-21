@@ -1,0 +1,10 @@
+<a class="goal-card{{ if .Params.featured }} is-featured{{ end }}" href="{{ .RelPermalink }}">
+  <span class="tick" aria-hidden="true"></span>
+  <div>
+    <h2>{{ .Title }}</h2>
+    {{ with .Summary }}<p>{{ . | plainify | truncate 160 }}</p>{{ end }}
+  </div>
+  {{ if not .Date.IsZero }}
+    <time datetime="{{ .Date | time.Format `2006-01-02` }}">{{ .Date | time.Format "02 Jan" }}</time>
+  {{ end }}
+</a>

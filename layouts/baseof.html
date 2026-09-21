@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.Locale site.Language.Lang }}" dir="{{ or site.Language.Direction `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{- $host := (urls.Parse site.BaseURL).Host }}
+  <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+  <div class="desk">
+    <div class="pda">
+      <div class="bezel-top">
+        <span class="product">{{ site.Title }}</span>
+        <span class="unit">{{ or site.Params.unitName $host }}</span>
+      </div>
+      <div class="lcd">
+        <div class="status">
+          <time data-clock datetime="{{ now.Format `2006-01-02T15:04:05Z07:00` }}">{{ now.Format "Jan 02 15:04" }}</time>
+        </div>
+        <div class="titlebar">
+          <span class="unit">{{ if .IsHome }}{{ i18n "main_menu" }}{{ else }}{{ .Title }}{{ end }}</span>
+          <span class="mode">{{ if .IsHome }}{{ i18n "goals" }}{{ else }}{{ or .Section .Type }}{{ end }}</span>
+        </div>
+        <div class="workspace">
+          {{ partial "rail.html" . }}
+          <div class="lcd-main">
+            {{ partial "tabs.html" . }}
+            <main id="main">
+              {{ block "main" . }}{{ end }}
+            </main>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="{{ site.Home.RelPermalink }}">{{ i18n "main_menu" }}</a>
+          <a href="javascript:history.back()">{{ i18n "back" }}</a>
+        </div>
+      </div>
+      {{ if ne site.Params.showThemeCredit false }}
+        <p class="credit">{{ i18n "theme_credit" }}</p>
+      {{ end }}
+    </div>
+  </div>
+</body>
+</html>

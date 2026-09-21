@@ -1,0 +1,21 @@
+{{- $page := . }}
+<nav class="rail" aria-label="{{ i18n "menu" }}">
+  <a href="{{ site.Home.RelPermalink }}" class="{{ if $page.IsHome }}is-active{{ end }}" aria-label="{{ i18n "main_menu" }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4z"/><path d="M9 20v-7h6v7"/></svg>
+  </a>
+  {{- range $i, $item := first 4 site.Menus.main }}
+    {{- $active := or ($page.IsMenuCurrent $item.Menu $item) ($page.HasMenuCurrent $item.Menu $item) }}
+    <a href="{{ $item.URL }}" class="{{ if $active }}is-active{{ end }}" aria-label="{{ $item.Name }}">
+      {{- /* Document-family icons only — same stroke language for every section */ -}}
+      {{- if eq (mod $i 4) 0 }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="16" rx="1"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+      {{- else if eq (mod $i 4) 1 }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="11" height="14" rx="1"/><path d="M9 5v14"/><path d="M16 8h3v11h-8"/></svg>
+      {{- else if eq (mod $i 4) 2 }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+      {{- else }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+      {{- end }}
+    </a>
+  {{- end }}
+</nav>

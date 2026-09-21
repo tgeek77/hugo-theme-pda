@@ -1,0 +1,8 @@
+{{- $page := . }}
+<nav class="tabs" aria-label="{{ i18n "goals" }}">
+  <a href="{{ site.Home.RelPermalink }}" class="{{ if $page.IsHome }}is-active{{ end }}">{{ i18n "goals" }}</a>
+  {{- range first 4 site.Menus.main }}
+    {{- $active := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
+    <a href="{{ .URL }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>{{ .Name }}</a>
+  {{- end }}
+</nav>

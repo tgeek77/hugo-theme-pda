@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s · %s" .Title site.Title }}{{ end }}</title>
+{{ with or .Description .Summary site.Params.description }}
+  <meta name="description" content="{{ . | plainify | truncate 160 }}">
+{{ end }}
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="{{ or (index site.Params.style `lcd`) `#a8b484` }}">
+{{ with site.Params.author.name }}<meta name="author" content="{{ . }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ with site.Home.OutputFormats.Get "rss" }}
+  <link rel="alternate" type="{{ .MediaType.Type }}" title="{{ printf "%s RSS" site.Title }}" href="{{ .RelPermalink }}">
+{{ end }}
+{{ with resources.Get "images/favicon.svg" }}
+  <link rel="icon" href="{{ .RelPermalink }}" type="image/svg+xml">
+{{ end }}
+{{ if ne site.Params.googleFonts false }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap">
+{{ end }}
+{{ partialCached "head/css.html" . }}
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
+{{ partial "schema.html" . }}
+{{ partialCached "head/js.html" . }}

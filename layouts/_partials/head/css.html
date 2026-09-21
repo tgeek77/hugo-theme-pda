@@ -1,0 +1,25 @@
+{{- $chroma := css.ChromaStyles (dict
+  "style" (or site.Params.chromaStyle "tango")
+  "targetPath" "css/chroma.css"
+) }}
+{{- with resources.Get "css/main.css" }}
+  {{- $opts := dict
+    "minify" (cond hugo.IsDevelopment false true)
+    "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+    "target" (slice "chrome115" "edge115" "firefox116" "ios16.4" "opera101" "safari16.4")
+    "targetPath" "css/main.css"
+    "vars" (or site.Params.style dict)
+  }}
+  {{- with $chroma }}
+    {{- $opts = merge $opts (dict "importContext" (slice .)) }}
+  {{- end }}
+  {{- with . | css.Build $opts }}
+    {{- if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- else }}
+      {{- with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

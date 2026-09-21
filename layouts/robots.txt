@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+{{ with site.Home.OutputFormats.Get "sitemap" -}}
+Sitemap: {{ .Permalink }}
+{{- end }}

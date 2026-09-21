@@ -1,0 +1,44 @@
+[skip_to_content]
+other = 'Skip to content'
+
+[menu]
+other = 'Functions'
+
+[main_menu]
+other = 'MAIN MENU'
+
+[back]
+other = 'BACK'
+
+[goals]
+other = 'GOALS'
+
+[notes]
+other = 'NOTES'
+
+[data]
+other = 'DATA'
+
+[posted]
+other = 'Logged'
+
+[tags]
+other = 'Tags'
+
+[read_more]
+other = 'Open'
+
+[not_found]
+other = 'NO RECORD'
+
+[not_found_body]
+other = 'That file is not on this unit. Return to the main menu.'
+
+[home]
+other = 'MAIN MENU'
+
+[theme_credit]
+other = 'PDA theme. Original field-computer chrome.'
+
+[empty]
+other = 'No entries in this list.'

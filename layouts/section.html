@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <p class="page-kicker">{{ i18n "goals" }}</p>
+  <h1 class="heading">{{ .Title }}</h1>
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ $paginator := .Paginate .Pages }}
+  <div class="goal-list">
+    {{ range $paginator.Pages }}
+      {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">Prev</a>{{ end }}
+      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Next</a>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,59 @@
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.160.0'
+
+[params]
+  description = 'A readable field computer for notes and logs.'
+  googleFonts = true
+  showThemeCredit = true
+  unitName = 'FIELD UNIT'
+  product = ''
+
+  [params.author]
+    name = ''
+    email = ''
+
+  # Pale LCD + dark ink, matching the Splinter Cell PDA screenshots
+  # (not inverted). Gunmetal housing; soft left/right screen glare.
+  [params.style]
+    desk = '#0c0d0f'
+    bezel = '#6a6c6a'
+    bezel-hi = '#9a9c9a'
+    bezel-lo = '#3a3c3a'
+    metal-edge = '#222224'
+    lcd = '#a8b484'
+    lcd-deep = '#8a9768'
+    panel = '#b8c694'
+    panel-hi = '#c5d3a2'
+    text = '#2a3220'
+    muted = '#4a5638'
+    phosphor = '#1e2616'
+    select = '#3a4430'
+    select-text = '#d4e0b0'
+    dim = '#6a7654'
+    line = '#3a4430'
+    ink = '#1a2014'
+    glare = '#e8f0c8'
+    danger = '#5a4820'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    style = 'tango'
+    tabWidth = 2
+
+[imaging]
+  quality = 82
+  resampleFilter = 'Lanczos'
+  [imaging.exif]
+    disableDate = true
+    disableLatLong = true

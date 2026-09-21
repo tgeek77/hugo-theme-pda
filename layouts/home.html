@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{ if not $pages }}
+    {{ $pages = where site.RegularPages "Section" "posts" }}
+  {{ end }}
+  {{ if not $pages }}
+    {{ $pages = site.RegularPages }}
+  {{ end }}
+  {{ $paginator := .Paginate $pages }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ if $paginator.Pages }}
+    <div class="goal-list">
+      {{ range $paginator.Pages }}
+        {{ partial "card.html" . }}
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="empty">{{ i18n "empty" }}</p>
+  {{ end }}
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">Prev</a>{{ end }}
+      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Next</a>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

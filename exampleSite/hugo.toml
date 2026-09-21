@@ -1,0 +1,41 @@
+baseURL = 'https://example.org/'
+locale = 'en-US'
+title = 'Watch Log'
+theme = 'pda'
+enableRobotsTXT = true
+summaryLength = 42
+timeout = '60s'
+
+[pagination]
+  pagerSize = 8
+
+[params]
+  description = 'Field notes from a handheld unit.'
+  mainSections = ['posts']
+  product = 'PERSONAL DIGITAL ASSISTANT'
+  unitName = 'FIELD UNIT'
+  googleFonts = true
+
+  [params.author]
+    name = 'Watch Officer'
+    email = 'watch@example.org'
+
+[menus]
+  [[menus.main]]
+    name = 'Notes'
+    pageRef = '/posts'
+    weight = 10
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 20
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 30
+
+[taxonomies]
+  tag = 'tags'
+
+[outputs]
+  home = ['html', 'rss']

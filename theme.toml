@@ -1,0 +1,11 @@
+name = 'PDA'
+license = 'MIT'
+description = 'A readable field-computer Hugo theme: olive bezel, phosphor LCD, tabbed mission cards. Original design, not a conversion of Ledger or Nightscape.'
+homepage = 'https://github.com/tgeek77/pda'
+tags = ['blog', 'dark', 'retro', 'monospace', 'responsive']
+features = ['responsive', 'dark', 'css.Build', 'render hooks', 'syntax highlighting']
+min_version = '0.160.0'
+
+[author]
+  name = 'tgeek77'
+  homepage = 'https://github.com/tgeek77'

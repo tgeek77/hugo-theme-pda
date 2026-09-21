@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Hugo
+/public/
+/resources/
+.hugo_build.lock
+exampleSite/public/
+exampleSite/resources/
+exampleSite/.hugo_build.lock
